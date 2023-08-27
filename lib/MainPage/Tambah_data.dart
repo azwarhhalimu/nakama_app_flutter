@@ -150,7 +150,8 @@ class _Tambah_dataState extends State<Tambah_data> {
                       Text("Jenis Kelamin"),
                       Text(
                         jenis_kelamin,
-                        style: TextStyle(color: Colors.black54),
+                        style: TextStyle(
+                            color: Colors.red, fontWeight: FontWeight.bold),
                       )
                     ],
                   ),
@@ -195,7 +196,8 @@ class _Tambah_dataState extends State<Tambah_data> {
                           style: TextStyle(fontWeight: FontWeight.bold),
                         ),
                       ),
-                      TextButton(
+                      TextButton.icon(
+                          label: Icon(Icons.add),
                           onPressed: () {
                             showModalBottomSheet(
                               isScrollControlled: true,
@@ -212,7 +214,12 @@ class _Tambah_dataState extends State<Tambah_data> {
                               }
                             });
                           },
-                          child: Text("Tambah"))
+                          icon: Text(
+                            "Tambah",
+                            style: TextStyle(
+                                fontWeight: FontWeight.bold,
+                                color: Color.fromARGB(255, 49, 123, 0)),
+                          ))
                     ],
                   ),
                   Padding(
@@ -223,17 +230,21 @@ class _Tambah_dataState extends State<Tambah_data> {
                             flex: 2,
                             child: Text(
                               "Pesanan",
-                              style: TextStyle(fontWeight: FontWeight.w500),
+                              style: TextStyle(
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.blue),
                             )),
                         Expanded(
                             child: Text(
                           "Jumlah",
-                          style: TextStyle(fontWeight: FontWeight.w500),
+                          style: TextStyle(
+                              fontWeight: FontWeight.bold, color: Colors.blue),
                         )),
                         Expanded(
                             child: Text(
                           "Opsi",
-                          style: TextStyle(fontWeight: FontWeight.w500),
+                          style: TextStyle(
+                              fontWeight: FontWeight.bold, color: Colors.blue),
                         )),
                       ],
                     ),
@@ -277,8 +288,11 @@ class _Tambah_dataState extends State<Tambah_data> {
                           width: double.infinity,
                           child: Column(
                             children: [
-                              Icon(Icons.info),
-                              Text("Data Kosong"),
+                              Icon(
+                                Icons.info_outline,
+                                size: 50,
+                              ),
+                              Text("Data menu pesanan belum ada."),
                             ],
                           ),
                         )

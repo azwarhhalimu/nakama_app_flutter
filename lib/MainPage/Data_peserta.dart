@@ -164,144 +164,149 @@ class _Data_pesertaState extends State<Data_peserta> {
         Expanded(
           child: loading
               ? LoadingList(jumlah: 6)
-              : ListView.builder(
-                  itemCount: data.length,
-                  itemBuilder: (context, index) {
-                    var setData = data[index];
-                    List pesanan = jsonDecode(setData["pesanan"]);
-                    return setData["nama"]
-                            .toString()
-                            .toLowerCase()
-                            .contains(cari.toString().toLowerCase())
-                        ? Container(
-                            decoration: BoxDecoration(
-                                border: Border(
-                                    bottom: BorderSide(
-                                        width: 1, color: Colors.black12))),
-                            child: ExpansionTile(
-                              leading: Text((index + 1).toString()),
-                              title: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Text(
-                                    setData["nama"],
-                                    style: TextStyle(
-                                      color: Colors.blue,
-                                      fontWeight: FontWeight.w500,
-                                    ),
-                                  ),
-                                  Text(setData["jumlah_bayar"]),
-                                  Text(
-                                    setData["jenis_kelamin"],
-                                    style: TextStyle(fontSize: 12),
-                                  ),
-                                  ElevatedButton(
-                                      onPressed: () async {
-                                        String link =
-                                            "https://nakama-baubau.vercel.app?code=";
-                                        final Uri _url = Uri.parse(
-                                            'https://api.whatsapp.com/send?text=${link}${setData["id_data"]}');
-                                        if (!await launchUrl(_url,
-                                            mode: LaunchMode
-                                                .externalNonBrowserApplication)) {
-                                          throw Exception(
-                                              'Could not launch $_url');
-                                        }
-                                      },
-                                      child: Text("Shere Tiket"))
-                                ],
-                              ),
-                              children: [
-                                Height(height: 10),
-                                Padding(
-                                  padding: EdgeInsets.only(left: 40),
-                                  child: Row(
-                                    mainAxisAlignment: MainAxisAlignment.center,
-                                    children: [
-                                      ElevatedButton.icon(
-                                        style: ElevatedButton.styleFrom(
-                                            backgroundColor: Colors.red),
-                                        onPressed: () {
-                                          _deleteData(setData["id_data"]);
-                                        },
-                                        label: Text("Hapus"),
-                                        icon: Icon(
-                                          Icons.delete,
-                                          color: Colors.white,
-                                        ),
-                                      ),
-                                      SizedBox(
-                                        width: 10,
-                                      ),
-                                      ElevatedButton.icon(
-                                        onPressed: () {
-                                          Navigator.push(context,
-                                              MaterialPageRoute(builder: (_) {
-                                            return Tambah_data(
-                                              data_edit: setData,
-                                            );
-                                          })).then((value) {
-                                            if (value == "refresh") {
-                                              _getData();
-                                            }
-                                          });
-                                        },
-                                        label: Text("Edit"),
-                                        icon: Icon(Icons.edit),
-                                      )
-                                    ],
-                                  ),
-                                ),
-                                Divider(),
-                                Text(
-                                  "Data Pesanan Pre Order",
-                                  style: TextStyle(
-                                    fontWeight: FontWeight.bold,
-                                  ),
-                                  textAlign: TextAlign.left,
-                                ),
-                                Height(height: 10),
-                                for (int i = 0; i < pesanan.length; i++)
-                                  Padding(
-                                    padding:
-                                        EdgeInsets.only(left: 60, bottom: 10),
-                                    child: Row(
-                                      children: [
-                                        Expanded(
-                                          child:
-                                              Text(pesanan[i]["nama_pesanan"]),
-                                        ),
-                                        Expanded(
-                                          child: Text(
-                                              pesanan[i]["jumlah"] + " Item"),
-                                        )
-                                      ],
-                                    ),
-                                  ),
-                                Height(height: 20),
-                                Container(
-                                  padding: EdgeInsets.only(
-                                      left: 15, right: 15, bottom: 10),
-                                  width: double.infinity,
-                                  child: Column(
+              : data.length == 0
+                  ? Center(child: Text("Data masih kosong"))
+                  : ListView.builder(
+                      itemCount: data.length,
+                      itemBuilder: (context, index) {
+                        var setData = data[index];
+                        List pesanan = jsonDecode(setData["pesanan"]);
+                        return setData["nama"]
+                                .toString()
+                                .toLowerCase()
+                                .contains(cari.toString().toLowerCase())
+                            ? Container(
+                                decoration: BoxDecoration(
+                                    border: Border(
+                                        bottom: BorderSide(
+                                            width: 1, color: Colors.black12))),
+                                child: ExpansionTile(
+                                  leading: Text((index + 1).toString()),
+                                  title: Column(
                                     crossAxisAlignment:
                                         CrossAxisAlignment.start,
                                     children: [
                                       Text(
-                                        "Keterangan",
+                                        setData["nama"],
                                         style: TextStyle(
-                                            fontWeight: FontWeight.w500),
+                                          color: Colors.blue,
+                                          fontWeight: FontWeight.w500,
+                                        ),
                                       ),
-                                      Text(setData["keterangan"]),
+                                      Text(setData["jumlah_bayar"]),
+                                      Text(
+                                        setData["jenis_kelamin"],
+                                        style: TextStyle(fontSize: 12),
+                                      ),
+                                      ElevatedButton(
+                                          onPressed: () async {
+                                            String link =
+                                                "https://nakama-baubau.vercel.app?code=";
+                                            final Uri _url = Uri.parse(
+                                                'https://api.whatsapp.com/send?text=${link}${setData["id_data"]}');
+                                            if (!await launchUrl(_url,
+                                                mode: LaunchMode
+                                                    .externalNonBrowserApplication)) {
+                                              throw Exception(
+                                                  'Could not launch $_url');
+                                            }
+                                          },
+                                          child: Text("Shere Tiket"))
                                     ],
                                   ),
-                                )
-                              ],
-                            ),
-                          )
-                        : Container();
-                  },
-                ),
+                                  children: [
+                                    Height(height: 10),
+                                    Padding(
+                                      padding: EdgeInsets.only(left: 40),
+                                      child: Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.center,
+                                        children: [
+                                          ElevatedButton.icon(
+                                            style: ElevatedButton.styleFrom(
+                                                backgroundColor: Colors.red),
+                                            onPressed: () {
+                                              _deleteData(setData["id_data"]);
+                                            },
+                                            label: Text("Hapus"),
+                                            icon: Icon(
+                                              Icons.delete,
+                                              color: Colors.white,
+                                            ),
+                                          ),
+                                          SizedBox(
+                                            width: 10,
+                                          ),
+                                          ElevatedButton.icon(
+                                            onPressed: () {
+                                              Navigator.push(context,
+                                                  MaterialPageRoute(
+                                                      builder: (_) {
+                                                return Tambah_data(
+                                                  data_edit: setData,
+                                                );
+                                              })).then((value) {
+                                                if (value == "refresh") {
+                                                  _getData();
+                                                }
+                                              });
+                                            },
+                                            label: Text("Edit"),
+                                            icon: Icon(Icons.edit),
+                                          )
+                                        ],
+                                      ),
+                                    ),
+                                    Divider(),
+                                    Text(
+                                      "Data Pesanan Pre Order",
+                                      style: TextStyle(
+                                        fontWeight: FontWeight.bold,
+                                      ),
+                                      textAlign: TextAlign.left,
+                                    ),
+                                    Height(height: 10),
+                                    for (int i = 0; i < pesanan.length; i++)
+                                      Padding(
+                                        padding: EdgeInsets.only(
+                                            left: 60, bottom: 10),
+                                        child: Row(
+                                          children: [
+                                            Expanded(
+                                              child: Text(
+                                                  pesanan[i]["nama_pesanan"]),
+                                            ),
+                                            Expanded(
+                                              child: Text(pesanan[i]["jumlah"] +
+                                                  " Item"),
+                                            )
+                                          ],
+                                        ),
+                                      ),
+                                    Height(height: 20),
+                                    Container(
+                                      padding: EdgeInsets.only(
+                                          left: 15, right: 15, bottom: 10),
+                                      width: double.infinity,
+                                      child: Column(
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
+                                        children: [
+                                          Text(
+                                            "Keterangan",
+                                            style: TextStyle(
+                                                fontWeight: FontWeight.w500),
+                                          ),
+                                          Text(setData["keterangan"]),
+                                        ],
+                                      ),
+                                    )
+                                  ],
+                                ),
+                              )
+                            : Container();
+                      },
+                    ),
         ),
       ]),
     );

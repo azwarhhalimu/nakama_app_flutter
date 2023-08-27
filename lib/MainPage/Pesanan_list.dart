@@ -12,30 +12,53 @@ class Pesanan_list extends StatefulWidget {
 
 class _Pesanan_listState extends State<Pesanan_list> {
   List menu = [
-    "Cappucino Hot",
-    "Cappucino Cold",
-    "Amiricatno Hot",
-    "Amiricatno Cold",
-    "Kopi susu Lacafe Hot",
-    "Hazelnut Latte Cold",
-    "Caramel Macchianto Hot",
-    "Caramel Macchianto Cold",
-    "Vanila Latte Hot",
-    "Caramel Latte Hot",
-    "Cofee Beer",
-    "Air Mineral Aqua",
-    "Red Valvet Cold",
-    "Taro Cold",
-    "Lemon Tea Cold",
-    "Thai Tea Cold",
-    "Chocolate Cold",
-    "Chocolate Hot",
-    "Chocolate Hazelnut Cold",
-    "Chocolate Caramel Cold",
-    "Chocolate Bannana Cold",
-    "Musa Velutina",
-    "French Fries",
-    "Pisang Nugget",
+    "Nasi Ayam Teriyaki",
+    "Nasi Parus Rica2",
+    "Nasi Ayam Geprek",
+    "Nasi Ayam Goreng Rempah",
+    "Nasi Tuna suir Kemangi",
+    "Ayam suir Kemangi",
+    "Nasi Goreng Kampung",
+    "Nasi Goreng Nasi goreng Special",
+    "Mi titi",
+    "Mi Seblak",
+    "Mi Seblak Ori",
+    "Indomie Goreng Telur",
+    "Indomi Rebus Telur",
+    // makanan 1
+    "Pisang Goreng ORi",
+    "Pisang Goreng coklat",
+    "Pisang Goreng Coklat Keju",
+    "Pisang Goreng Brown Sugar",
+    "Cireng Encus",
+    "Cireng Isi Ayam",
+    "Cireng Balado",
+    "Keju Aroma",
+    "Ketang GOreng",
+    "Ubi Goreng",
+    "Sosis",
+    "Bakso",
+    "Keju",
+    // minaman 1
+    "Kopi sija",
+    "Kopi Sija Jumbo",
+    "Kopi Susu Sija",
+    "Kopi Susu Sija Jumbo",
+    "Thaitea",
+    "Greentea",
+    "Es Teh Manis",
+    "Es Jeruk Peras",
+    "Es Jeruk Nipis",
+    "Teh Tarik",
+    "Kopi Tarik",
+    // drink 2
+    "Signature Chocolate",
+    "Neslo",
+    "Kopi Susu Beruang",
+    "Kpi Yakult",
+    "Jus Mangga",
+    "Jus Alpukat",
+    "Jus Buah Naga",
   ];
   String search = "";
   String pilih = "";
@@ -53,7 +76,7 @@ class _Pesanan_listState extends State<Pesanan_list> {
         inputFormatters: [FilteringTextInputFormatter.digitsOnly],
         decoration: InputDecoration(
           border: OutlineInputBorder(),
-          hintText: "Masukkan jumlah",
+          hintText: "Masukkan jumlah ",
         ),
       ),
       actions: [
@@ -86,7 +109,7 @@ class _Pesanan_listState extends State<Pesanan_list> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: MediaQuery.of(context).size.height * .7,
+      height: MediaQuery.of(context).size.height * .8,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -111,11 +134,14 @@ class _Pesanan_listState extends State<Pesanan_list> {
                         search = value.toLowerCase();
                       });
                     },
+                    autofocus: true,
                     decoration: InputDecoration(
                         prefixIcon: Icon(Icons.search),
                         contentPadding: EdgeInsets.all(0),
                         border: OutlineInputBorder(),
-                        hintText: "Masukkan pencarian"),
+                        hintText: "Masukkan pencarian (" +
+                            menu.length.toString() +
+                            " Menu)"),
                   ),
                 )),
                 TextButton(
